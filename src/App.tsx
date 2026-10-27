@@ -10,7 +10,15 @@ import Hero from './components/Hero.tsx';
 import Marquee from './components/Marquee.tsx';
 import About from './components/About.tsx';
 import ColorPicker from './components/ColorPicker.tsx';
-import SectionStubs from './components/SectionStubs.tsx';
+import ServicesSection from './components/ServicesSection.tsx';
+import WhyUsSection from './components/WhyUsSection.tsx';
+import VisionSection from './components/VisionSection.tsx';
+import PortfolioSection from './components/PortfolioSection.tsx';
+import ProcessSection from './components/ProcessSection.tsx';
+import QuoteSection from './components/QuoteSection.tsx';
+import BranchesSection from './components/BranchesSection.tsx';
+import FaqSection from './components/FaqSection.tsx';
+import FinalCtaSection from './components/FinalCtaSection.tsx';
 import Footer from './components/Footer.tsx';
 import MobileBottomBar from './components/MobileBottomBar.tsx';
 
@@ -35,8 +43,32 @@ export function App() {
           {/* Section 4: Interactive Color Picker */}
           <ColorPicker />
 
-          {/* Temporary Anchors and Stubs for Sections to be built in Rounds 2 & 3 */}
-          <SectionStubs />
+          {/* Section 5: Services */}
+          <ServicesSection />
+
+          {/* Section 6: Why Us */}
+          <WhyUsSection />
+
+          {/* Section 7: Vision & Promise */}
+          <VisionSection />
+
+          {/* Section 8: Portfolio */}
+          <PortfolioSection />
+
+          {/* Section 9: 4-Step Process */}
+          <ProcessSection />
+
+          {/* Section 10: Quote Request Form */}
+          <QuoteSection />
+
+          {/* Section 11: 4 Branches with Interactive Map */}
+          <BranchesSection />
+
+          {/* Section 12: Frequently Asked Questions */}
+          <FaqSection />
+
+          {/* Section 13: Final Call to Action */}
+          <FinalCtaSection />
         </main>
 
         {/* Footer */}

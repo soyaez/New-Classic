@@ -11,7 +11,7 @@ export const Marquee: React.FC = () => {
   const displayItems = [...marquee, ...marquee, ...marquee, ...marquee];
 
   return (
-    <div className="relative py-6 sm:py-8 overflow-hidden select-none">
+    <div className="relative my-4 md:my-6 overflow-x-hidden select-none">
       {/* Rotated band container */}
       <div className="transform -rotate-2 -mx-4 sm:-mx-8">
         <div className="bg-[#F26B3A] text-white py-3.5 sm:py-4 shadow-md overflow-hidden flex items-center marquee-container">

@@ -33,7 +33,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="top"
-      className="relative pt-28 md:pt-36 pb-16 md:pb-24 overflow-hidden min-h-[92vh] flex flex-col justify-between"
+      className="relative pt-28 md:pt-36 pb-4 md:pb-6 overflow-hidden"
     >
       {/* Background soft ambient warm glow */}
       <div
@@ -160,9 +160,9 @@ export const Hero: React.FC = () => {
         </motion.div>
 
         {/* 5 Polo Shirts Fanned Out in One Row (Matching Mockup) */}
-        <div className="relative w-full max-w-4xl mt-12 sm:mt-16 pt-2 pb-8 flex flex-col items-center select-none overflow-visible">
+        <div className="relative w-full max-w-4xl mt-8 sm:mt-12 pt-2 pb-0 flex flex-col items-center select-none overflow-visible">
           {/* Fan container: one row, overlapping each other by ~30%, scaled to fit screen width on mobile */}
-          <div className="relative w-full flex items-center justify-center -space-x-[24%] xs:-space-x-[26%] sm:-space-x-[28%] md:-space-x-[30%] py-4">
+          <div className="relative w-full flex items-center justify-center -space-x-[24%] xs:-space-x-[26%] sm:-space-x-[28%] md:-space-x-[30%] pt-2 pb-0">
             {shirtConfigs.map((config, index) => (
               <motion.div
                 key={index}
@@ -215,9 +215,13 @@ export const Hero: React.FC = () => {
             ))}
           </div>
 
-          {/* Soft Elliptical Shadow Underneath the Fanned Shirts */}
+          {/* Soft Elliptical Shadow Underneath the Fanned Shirts (12px below bottom edge, width ~70%, height ~28px, blur 24px, opacity 0.18) */}
           <div
-            className="w-[78%] max-w-[580px] h-7 -mt-1 bg-gradient-to-r from-transparent via-black/15 to-transparent rounded-[100%] blur-md pointer-events-none"
+            className="w-[70%] max-w-[520px] h-[28px] mt-3 pointer-events-none rounded-[100%]"
+            style={{
+              background: 'radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0) 72%)',
+              filter: 'blur(24px)',
+            }}
             aria-hidden="true"
           />
         </div>

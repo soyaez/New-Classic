@@ -24,6 +24,11 @@ function initPreload(src: string) {
   const img = new Image();
   img.src = src;
   img.onload = () => {
+    if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+      baseImgStatus = 'error';
+      listeners.forEach((cb) => cb('error'));
+      return;
+    }
     baseImgStatus = 'loaded';
     listeners.forEach((cb) => cb('loaded'));
   };
@@ -314,6 +319,11 @@ export const PoloShirt: React.FC<PoloShirtProps> = ({
           alt=""
           aria-hidden="true"
           onError={() => setChestMarkError(true)}
+          onLoad={(e) => {
+            if (e.currentTarget.naturalWidth === 0) {
+              setChestMarkError(true);
+            }
+          }}
           className="absolute pointer-events-none select-none object-contain"
           style={{
             width: '11%',

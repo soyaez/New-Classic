@@ -28,7 +28,7 @@ export const About: React.FC = () => {
   }, [isInView]);
 
   return (
-    <section id="about" className="py-20 md:py-32 overflow-hidden">
+    <section id="about" className="pt-12 md:pt-16 pb-20 md:pb-32 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Image Composition */}

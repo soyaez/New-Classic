@@ -75,6 +75,11 @@ export const Monogram: React.FC<MonogramProps> = ({
       src={IMG_BASE + 'logo-mark.png'}
       alt="New Classic"
       onError={() => setHasError(true)}
+      onLoad={(e) => {
+        if (e.currentTarget.naturalWidth === 0) {
+          setHasError(true);
+        }
+      }}
       className={`shrink-0 w-auto object-contain select-none transition-transform duration-300 group-hover:scale-105 ${heightClass} ${className}`}
     />
   );
