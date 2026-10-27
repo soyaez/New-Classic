@@ -13,11 +13,11 @@ export const Hero: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
 
   const shirtConfigs = [
-    { color: '#F26B3A', rotate: -12, delay: 0, zIndex: 1, duration: 4.8 },
-    { color: '#7CB7FF', rotate: -6, delay: 0.3, zIndex: 2, duration: 5.2 },
-    { color: '#5FCB9A', rotate: 0, delay: 0.6, zIndex: 3, duration: 4.5 },
-    { color: '#FFCE5C', rotate: 6, delay: 0.9, zIndex: 2, duration: 5.0 },
-    { color: '#2F4B8F', rotate: 12, delay: 1.2, zIndex: 1, duration: 4.6 },
+    { color: '#F26B3A', rotate: -10, scale: 0.94, delay: 0, zIndex: 10, duration: 4.8 },
+    { color: '#7CB7FF', rotate: -5, scale: 0.97, delay: 0.3, zIndex: 20, duration: 5.2 },
+    { color: '#5FCB9A', rotate: 0, scale: 1.08, delay: 0.6, zIndex: 30, duration: 4.5 },
+    { color: '#FFCE5C', rotate: 5, scale: 0.97, delay: 0.9, zIndex: 20, duration: 5.0 },
+    { color: '#2F4B8F', rotate: 10, scale: 0.94, delay: 1.2, zIndex: 10, duration: 4.6 },
   ];
 
   const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -159,64 +159,65 @@ export const Hero: React.FC = () => {
           </a>
         </motion.div>
 
-        {/* 5 Polo Shirts Fanned Out in an Arc with Gentle Float Animation */}
-        <div className="relative w-full max-w-3xl mt-12 sm:mt-16 pt-4 pb-8 flex flex-col items-center">
-          {/* Fan container */}
-          <div className="relative w-full h-[220px] sm:h-[290px] md:h-[340px] flex items-center justify-center">
-            {shirtConfigs.map((config, index) => {
-              // Calculate horizontal spacing across the arc
-              // Index from 0 to 4: 0 = far left, 2 = center, 4 = far right
-              const offsetPercentage = (index - 2) * 18; // -36%, -18%, 0%, 18%, 36%
-
-              return (
-                <motion.div
-                  key={index}
-                  style={{
-                    zIndex: config.zIndex,
-                    left: `calc(50% + ${offsetPercentage}%)`,
-                    transform: 'translateX(-50%)',
-                  }}
-                  initial={
-                    shouldReduceMotion
-                      ? { rotate: config.rotate }
-                      : { opacity: 0, scale: 0.5, y: 60, rotate: 0 }
-                  }
-                  animate={
-                    shouldReduceMotion
-                      ? { rotate: config.rotate }
-                      : {
-                          opacity: 1,
-                          scale: 1,
-                          rotate: config.rotate,
-                          y: [0, -9, 0],
-                        }
-                  }
-                  transition={
-                    shouldReduceMotion
-                      ? { duration: 0 }
-                      : {
-                          opacity: { duration: 0.8, delay: 0.6 + index * 0.08 },
-                          scale: { duration: 0.8, delay: 0.6 + index * 0.08, type: 'spring', stiffness: 120 },
-                          rotate: { duration: 0.8, delay: 0.6 + index * 0.08, type: 'spring', stiffness: 100 },
-                          y: {
-                            duration: config.duration,
-                            repeat: Infinity,
-                            ease: 'easeInOut',
-                            delay: config.delay,
-                          },
-                        }
-                  }
-                  className="absolute top-0 w-[140px] sm:w-[200px] md:w-[245px] hover:scale-105 transition-transform duration-300 cursor-pointer pointer-events-auto"
-                >
-                  <PoloShirt color={config.color} className="w-full drop-shadow-xl" />
-                </motion.div>
-              );
-            })}
+        {/* 5 Polo Shirts Fanned Out in One Row (Matching Mockup) */}
+        <div className="relative w-full max-w-4xl mt-12 sm:mt-16 pt-2 pb-8 flex flex-col items-center select-none overflow-visible">
+          {/* Fan container: one row, overlapping each other by ~30%, scaled to fit screen width on mobile */}
+          <div className="relative w-full flex items-center justify-center -space-x-[24%] xs:-space-x-[26%] sm:-space-x-[28%] md:-space-x-[30%] py-4">
+            {shirtConfigs.map((config, index) => (
+              <motion.div
+                key={index}
+                style={{
+                  zIndex: config.zIndex,
+                }}
+                initial={
+                  shouldReduceMotion
+                    ? { rotate: config.rotate, scale: config.scale }
+                    : { opacity: 0, scale: 0.4, y: 55, rotate: 0 }
+                }
+                animate={
+                  shouldReduceMotion
+                    ? { rotate: config.rotate, scale: config.scale }
+                    : {
+                        opacity: 1,
+                        scale: config.scale,
+                        rotate: config.rotate,
+                        y: [0, -9, 0],
+                      }
+                }
+                whileHover={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        scale: config.scale * 1.06,
+                        zIndex: 40,
+                        transition: { duration: 0.2 },
+                      }
+                }
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : {
+                        opacity: { duration: 0.8, delay: 0.6 + index * 0.08 },
+                        scale: { duration: 0.9, delay: 0.6 + index * 0.08, type: 'spring', stiffness: 120 },
+                        rotate: { duration: 0.9, delay: 0.6 + index * 0.08, type: 'spring', stiffness: 100 },
+                        y: {
+                          duration: config.duration,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                          delay: config.delay,
+                        },
+                      }
+                }
+                className="w-[28%] xs:w-[26%] sm:w-[24%] md:w-[22%] max-w-[240px] shrink-0 cursor-pointer pointer-events-auto transition-transform"
+              >
+                <PoloShirt color={config.color} className="w-full h-auto" />
+              </motion.div>
+            ))}
           </div>
 
           {/* Soft Elliptical Shadow Underneath the Fanned Shirts */}
           <div
-            className="w-[85%] max-w-[620px] h-8 -mt-2 bg-gradient-to-r from-transparent via-black/15 to-transparent rounded-[100%] blur-md pointer-events-none"
+            className="w-[78%] max-w-[580px] h-7 -mt-1 bg-gradient-to-r from-transparent via-black/15 to-transparent rounded-[100%] blur-md pointer-events-none"
             aria-hidden="true"
           />
         </div>

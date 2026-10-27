@@ -168,7 +168,7 @@ export const colors: ColorsConfig = {
     { name: "กรมท่า", hex: "#2F4B8F" },
     { name: "ชมพู", hex: "#F28DB2" },
     { name: "เทา", hex: "#9AA0A6" },
-    { name: "ดำ", hex: "#1D1D1F" },
+    { name: "ดำ", hex: "#2B2B2E" },
   ],
 };
 
