@@ -1,0 +1,6 @@
+{
+  "name": "New Classic - เสื้อโปโลบางใหญ่ บางบัวทอง",
+  "description": "New Classic โรงงานผลิตและจำหน่ายเสื้อโปโล บางใหญ่ บางบัวทอง เสื้อเปล่าและงานสั่งผลิต พร้อมปัก–สกรีน ขายปลีกในราคาขายส่ง มีหน้าร้าน ประสบการณ์กว่า 30 ปี",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

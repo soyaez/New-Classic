@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidQuote(data) {
+      return data.keys().hasAll(['customerName', 'phone', 'createdAt'])
+        && data.customerName is string && data.customerName.size() > 0 && data.customerName.size() <= 100
+        && data.phone is string && data.phone.size() > 0 && data.phone.size() <= 50
+        && data.createdAt is string && data.createdAt.size() > 0 && data.createdAt.size() <= 50;
+    }
+
+    function isValidMessage(data) {
+      return data.keys().hasAll(['message', 'createdAt'])
+        && data.message is string && data.message.size() > 0 && data.message.size() <= 2000
+        && data.createdAt is string && data.createdAt.size() > 0 && data.createdAt.size() <= 50;
+    }
+
+    match /quoteRequests/{quoteId} {
+      allow create: if isValidId(quoteId) && isValidQuote(request.resource.data);
+      allow read: if true;
+      allow update, delete: if false;
+    }
+
+    match /messages/{messageId} {
+      allow create: if isValidId(messageId) && isValidMessage(request.resource.data);
+      allow read: if true;
+      allow update, delete: if false;
+    }
+
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+  }
+}

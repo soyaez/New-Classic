@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "QuoteRequest": {
+      "title": "QuoteRequest",
+      "description": "Customer inquiry and quote request submission",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "serviceType": { "type": "string" },
+        "quantity": { "type": "number" },
+        "notes": { "type": "string" },
+        "status": { "type": "string", "enum": ["new", "contacted", "completed"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["customerName", "phone", "createdAt"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "General question or contact message from site visitor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "contact": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/quoteRequests/{quoteId}": {
+      "schema": "QuoteRequest",
+      "description": "Collection of quote requests submitted by customers"
+    },
+    "/messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Collection of general messages and contact inquiries"
+    }
+  }
+}

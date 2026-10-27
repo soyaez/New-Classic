@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-accent: 'Sriracha', cursive;
+
+  --color-warm-bg: #FBF8F4;
+  --color-warm-alt: #F3EEE7;
+  --color-warm-card: #FFFFFF;
+  --color-ink: #1D1D1F;
+  --color-ink-soft: #6E6E73;
+  --color-line: #E7E0D7;
+  --color-tangerine: #F26B3A;
+  --color-tangerine-hover: #FF8A5C;
+  --color-dark: #1D1D1F;
+
+  --color-sky: #7CB7FF;
+  --color-mint: #5FCB9A;
+  --color-butter: #FFCE5C;
+  --color-navy: #2F4B8F;
+}
+
+:root {
+  --bg: #FBF8F4;
+  --bg-alt: #F3EEE7;
+  --card: #FFFFFF;
+  --ink: #1D1D1F;
+  --ink-soft: #6E6E73;
+  --line: #E7E0D7;
+  --primary: #F26B3A;
+  --primary-hover: #FF8A5C;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  background-color: #FBF8F4;
+}
+
+body {
+  font-family: 'Noto Sans Thai', sans-serif;
+  color: #1D1D1F;
+  background-color: #FBF8F4;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Heading typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Prompt', sans-serif;
+}
+
+.font-heading {
+  font-family: 'Prompt', sans-serif;
+}
+
+.font-body {
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+
+.font-accent {
+  font-family: 'Sriracha', cursive;
+}
+
+/* Custom shine animation on hover for primary pill button */
+.btn-shine-container {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shine-container::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.btn-shine-container:hover::after {
+  opacity: 1;
+  animation: sweep 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(0) rotate(25deg);
+  }
+  100% {
+    transform: translateX(450%) rotate(25deg);
+  }
+}
+
+/* Marquee infinite scroll animation */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 24s linear infinite;
+  will-change: transform;
+}
+
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
